@@ -37,6 +37,26 @@
         </div>
     </header>
 
+      <!-- main section -->
+    <main>
+        <section class="w-[95%] md:w-[90%] lg:w-[80%] mx-auto space-y-4">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                <h2 class="font-semibold text-lg md:text-xl">Available Jobs</h2>
+                <p id="job-indicator"  class="text-sm md:text-base text-gray-600">8 Jobs</p>
+            </div>
+
+            <!-- Filter buttons -->
+            <div class="flex flex-wrap gap-2">
+                <button onclick="toggleStyle('all-filter-btn')" id="all-filter-btn" class="btn btn-sm md:btn-md btn-active btn-primary">All</button>
+                <button onclick="toggleStyle('interview-filter-btn')"  id="interview-filter-btn" class="btn btn-sm md:btn-md">Interview</button>
+                <button onclick="toggleStyle('rejected-filter-btn')" id="rejected-filter-btn" class="btn btn-sm md:btn-md">Rejected</button>
+            </div>
+         </section>
+          <!-- filter card -->
+           <section id="filter-section" class="hidden">
+             
+           </section>
+
    
        
 
