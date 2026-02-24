@@ -141,3 +141,158 @@ function toggleStyle(id) {
         updateJobIndicator('all');
     }
 }
+
+
+function renderEmptyState() {
+    filterSection.innerHTML = `
+        <div class="flex flex-col items-center justify-center py-20 text-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/7486/7486747.png"
+                 class="w-20 mb-4 opacity-80" />
+            <h2 class="text-lg font-semibold text-gray-700">
+                No jobs available
+            </h2>
+            <p class="text-sm text-gray-500">
+                Check back soon for new job opportunities
+            </p>
+        </div>
+    `;
+}
+
+function createCardHTML(data) {
+    return `
+    <div class="card bg-white p-4 md:p-6 shadow-lg rounded-xl">
+        <div class="flex flex-col md:flex-row md:justify-between gap-4">
+            <div class="space-y-3 md:space-y-4 flex-1">
+                <div>
+                    <h2 class="skillname font-bold text-lg md:text-xl">${data.skillName}</h2>
+                    <p class="skill text-gray-600 text-sm md:text-base">${data.skill}</p>
+                </div>
+
+                <p class="details text-xs md:text-sm text-gray-500">
+                    ${data.details}
+                </p>
+
+                <button class="status-alert btn btn-sm md:btn-md btn-outline
+                    ${data.status === 'INTERVIEW' ? 'btn-success' : 'btn-error'}">
+                    ${data.status}
+                </button>
+
+                <p class="notes text-sm md:text-base text-gray-600">
+                    ${data.notes}
+                </p>
+
+                <div class="flex gap-2 pt-2">
+                    <button class="interview-btn btn btn-sm btn-outline btn-success">
+                        INTERVIEW
+                    </button>
+                    <button class="rejected-btn btn btn-sm btn-outline btn-error">
+                        REJECTED
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <button class="btn btn-ghost btn-sm text-red-500">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    `;
+}
+
+function getTotalJobs() {
+    return allCardsSection.querySelectorAll('.card, .bg-white').length;
+}
+
+function updateJobIndicator(type) {
+    const totalJobs = getTotalJobs();
+
+    if (type === 'all') {
+        jobIndicator.innerText = `${totalJobs} Jobs`;
+    }
+
+    else if (type === 'interview') {
+        jobIndicator.innerText = `${interviewList.length} of ${totalJobs} Jobs`;
+    }
+
+    else if (type === 'rejected') {
+        jobIndicator.innerText = `${rejectedlist.length} of ${totalJobs} Jobs`;
+    }
+}
+
+filterSection.addEventListener("click", function (event) {
+    const cardElement = event.target.closest('.card');
+    if (!cardElement) return;
+
+    const skillName = cardElement.querySelector('.skillname').innerText;
+
+
+    if (event.target.classList.contains("interview-btn")) {
+
+        const mainCards = allCardsSection.querySelectorAll('.card, .bg-white');
+        mainCards.forEach(card => {
+            if (card.querySelector('.skillname').innerText === skillName) {
+                card.querySelector(".interview-btn").click();
+            }
+        });
+
+        renderRejected();
+    }
+
+
+    else if (event.target.classList.contains("rejected-btn")) {
+        const mainCards = allCardsSection.querySelectorAll('.card, .bg-white');
+        mainCards.forEach(card => {
+            if (card.querySelector('.skillname').innerText === skillName) {
+                card.querySelector(".rejected-btn").click();
+            }
+        });
+
+        renderInterview();
+    }
+
+    else if (event.target.closest('.text-red-500')) {
+        interviewList = interviewList.filter(item => item.skillName !== skillName);
+        rejectedlist = rejectedlist.filter(item => item.skillName !== skillName);
+
+        calculateCount();
+
+        if (interviewFilterBtn.classList.contains('btn-primary')) renderInterview();
+        else renderRejected();
+    }
+});
+
+filterSection.addEventListener("click", function (event) {
+    if (event.target.closest('.text-red-500')) {
+        const cardElement = event.target.closest('.card');
+        const skillName = cardElement.querySelector('.skillname').innerText;
+
+
+        interviewList = interviewList.filter(item => item.skillName !== skillName);
+
+        rejectedlist = rejectedlist.filter(item => item.skillName !== skillName);
+
+
+        const mainCards = allCardsSection.querySelectorAll('.card, .bg-white');
+        mainCards.forEach(card => {
+            if (card.querySelector('.skillname').innerText === skillName) {
+                const statusBtn = card.querySelector('.status-alert');
+                statusBtn.innerText = 'Not Selected'; // আগের অবস্থায় ফিরিয়ে আনা
+                statusBtn.className = 'status-alert btn btn-sm md:btn-md btn-outline';
+            }
+        });
+
+
+        calculateCount();
+
+        cardElement.remove();
+
+        if (interviewFilterBtn.classList.contains('btn-primary')) {
+            renderInterview();
+        } else {
+            renderRejected();
+        }
+    }
+});
+calculateCount();
