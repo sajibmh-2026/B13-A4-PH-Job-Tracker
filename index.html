@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="bg-[#F8FAFC]">
 
@@ -16,8 +15,8 @@
 </head>
 
 <body>
-   <!-- header section -->
- <header class="w-[95%] md:w-[90%] lg:w-[80%] mx-auto space-y-4 py-5">
+    <!-- header section -->
+    <header class="w-[95%] md:w-[90%] lg:w-[80%] mx-auto space-y-4 py-5">
         <h1 class="text-2xl md:text-3xl font-bold">Job Application Tracker</h1>
 
 
@@ -37,27 +36,30 @@
         </div>
     </header>
 
-      <!-- main section -->
+    <!-- main section -->
     <main>
         <section class="w-[95%] md:w-[90%] lg:w-[80%] mx-auto space-y-4">
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                 <h2 class="font-semibold text-lg md:text-xl">Available Jobs</h2>
-                <p id="job-indicator"  class="text-sm md:text-base text-gray-600">8 Jobs</p>
+                <p id="job-indicator" class="text-sm md:text-base text-gray-600">8 Jobs</p>
             </div>
 
             <!-- Filter buttons -->
             <div class="flex flex-wrap gap-2">
-                <button onclick="toggleStyle('all-filter-btn')" id="all-filter-btn" class="btn btn-sm md:btn-md btn-active btn-primary">All</button>
-                <button onclick="toggleStyle('interview-filter-btn')"  id="interview-filter-btn" class="btn btn-sm md:btn-md">Interview</button>
-                <button onclick="toggleStyle('rejected-filter-btn')" id="rejected-filter-btn" class="btn btn-sm md:btn-md">Rejected</button>
+                <button onclick="toggleStyle('all-filter-btn')" id="all-filter-btn"
+                    class="btn btn-sm md:btn-md btn-active btn-primary">All</button>
+                <button onclick="toggleStyle('interview-filter-btn')" id="interview-filter-btn"
+                    class="btn btn-sm md:btn-md">Interview</button>
+                <button onclick="toggleStyle('rejected-filter-btn')" id="rejected-filter-btn"
+                    class="btn btn-sm md:btn-md">Rejected</button>
             </div>
-         </section>
-          <!-- filter card -->
-           <section id="filter-section" class="hidden">
-             
-           </section>
+        </section>
+        <!-- filter card -->
+        <section id="filter-section" class="hidden">
 
-              <section id="all-cards" class="w-[95%] md:w-[90%] lg:w-[80%] mx-auto space-y-4 pt-4 pb-8">
+        </section>
+
+        <section id="all-cards" class="w-[95%] md:w-[90%] lg:w-[80%] mx-auto space-y-4 pt-4 pb-8">
 
             <!-- card 1 -->
             <div class="card bg-white p-4 md:p-6 shadow-lg rounded-xl">
@@ -133,32 +135,33 @@
             </div>
 
             <!-- card 3 -->
-         <div class="bg-white p-4 md:p-6 shadow-lg rounded-xl" data-status="all">
-    <div class="flex flex-col md:flex-row md:justify-between gap-4">
-        <div class="space-y-3 md:space-y-4 flex-1">
-            <div>
-                <h2 class="skillname font-bold text-lg md:text-xl">CloudSphere Tech</h2>
-                <p class="skill text-gray-600 text-sm md:text-base">Backend Developer (Node.js)</p>
+            <div class="bg-white p-4 md:p-6 shadow-lg rounded-xl" data-status="all">
+                <div class="flex flex-col md:flex-row md:justify-between gap-4">
+                    <div class="space-y-3 md:space-y-4 flex-1">
+                        <div>
+                            <h2 class="skillname font-bold text-lg md:text-xl">CloudSphere Tech</h2>
+                            <p class="skill text-gray-600 text-sm md:text-base">Backend Developer (Node.js)</p>
+                        </div>
+                        <p class="details text-xs md:text-sm text-gray-500">
+                            Remote • Full-time • $110,000 - $150,000
+                        </p>
+                        <button class="status-alert btn btn-sm md:btn-md btn-active">Not Applied</button>
+                        <p class="notes text-sm md:text-base text-gray-600 leading-relaxed">
+                            Design and implement scalable APIs and microservices using Node.js and AWS.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-2 pt-2">
+                            <button
+                                class="interview-btn btn btn-sm md:btn-md btn-outline btn-success">INTERVIEW</button>
+                            <button class="rejected-btn btn btn-sm md:btn-md btn-outline btn-error">REJECTED</button>
+                        </div>
+                    </div>
+                    <div class="flex md:flex-col justify-end md:justify-start items-start">
+                        <button class="btn btn-ghost btn-sm md:btn-md text-red-500 hover:bg-red-50">
+                            <i class="fa-solid fa-trash-can text-lg"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <p class="details text-xs md:text-sm text-gray-500">
-                Remote • Full-time • $110,000 - $150,000
-            </p>
-            <button class="status-alert btn btn-sm md:btn-md btn-active">Not Applied</button>
-            <p class="notes text-sm md:text-base text-gray-600 leading-relaxed">
-                Design and implement scalable APIs and microservices using Node.js and AWS.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-2 pt-2">
-                <button class="interview-btn btn btn-sm md:btn-md btn-outline btn-success">INTERVIEW</button>
-                <button class="rejected-btn btn btn-sm md:btn-md btn-outline btn-error">REJECTED</button>
-            </div>
-        </div>
-        <div class="flex md:flex-col justify-end md:justify-start items-start">
-            <button class="btn btn-ghost btn-sm md:btn-md text-red-500 hover:bg-red-50">
-                <i class="fa-solid fa-trash-can text-lg"></i>
-            </button>
-        </div>
-    </div>
-</div>
             <!-- card 4 -->
             <div class="bg-white p-4 md:p-6 shadow-lg rounded-xl" data-status="all">
                 <div class="flex flex-col md:flex-row md:justify-between gap-4">
@@ -311,28 +314,8 @@
 
         </section>
     </main>
-
-   
-       
-
-         
-
-                 
-
-
-      
-           
-      
-
-
-               
-                    
- 
-
     <!-- javascript linked -->
-     <script src="script/script.js"></script>
+    <script src="script/script.js"></script>
 </body>
 
 </html>
-
-
