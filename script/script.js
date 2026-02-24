@@ -79,3 +79,65 @@ allCardsSection.addEventListener("click", function (event) {
         calculateCount();
     }
 });
+
+
+
+function renderInterview() {
+    filterSection.innerHTML = '';
+    filterSection.className =
+        'w-[95%] md:w-[90%] lg:w-[80%] mx-auto space-y-4 pt-4 pb-8';
+
+    if (interviewList.length === 0) {
+        renderEmptyState();
+        return;
+    }
+
+    interviewList.forEach(item => {
+        const div = document.createElement('div');
+        div.innerHTML = createCardHTML(item);
+        filterSection.appendChild(div.firstElementChild);
+    });
+}
+function renderRejected() {
+    filterSection.innerHTML = '';
+
+    if (rejectedlist.length === 0) {
+        renderEmptyState();
+        return;
+    }
+
+    rejectedlist.forEach(item => {
+        const div = document.createElement('div');
+        div.innerHTML = createCardHTML(item);
+        filterSection.appendChild(div.firstElementChild);
+    });
+}
+// tab switch
+function toggleStyle(id) {
+    allFilterBtn.className = "btn btn-sm md:btn-md text-black";
+    interviewFilterBtn.className = "btn btn-sm md:btn-md text-black";
+    rejectedFilterBtn.className = "btn btn-sm md:btn-md text-black";
+
+    const selected = document.getElementById(id);
+    selected.classList.add('btn-primary', 'text-white');
+
+    if (id === 'interview-filter-btn') {
+        allCardsSection.classList.add('hidden');
+        filterSection.classList.remove('hidden');
+        renderInterview();
+        updateJobIndicator('interview');
+    }
+
+    else if (id === 'rejected-filter-btn') {
+        allCardsSection.classList.add('hidden');
+        filterSection.classList.remove('hidden');
+        renderRejected();
+        updateJobIndicator('rejected');
+    }
+
+    else {
+        allCardsSection.classList.remove('hidden');
+        filterSection.classList.add('hidden');
+        updateJobIndicator('all');
+    }
+}
